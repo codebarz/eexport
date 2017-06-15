@@ -1,0 +1,130 @@
+
+.hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+.content-wrapper input[type="text"],
+.content-wrapper textarea{
+    outline: none;
+    padding: 10px;
+    display: block;
+    width: 90%;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    margin: 30px auto;
+    font-family: "Roboto Light", "Open Sans", Serif;
+}
+.content-wrapper .upload {
+    border: 2px solid #eeeeee;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px 12px;
+    cursor: pointer;
+    margin: 0px 20px 0px 0px;
+}
+.content-wrapper .pic {
+    display: inline-block;
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    padding-right: 5px;
+}
+.content-wrapper .pic-upload  {
+    content: url("../images/download.png");
+}
+.content-wrapper input[type='file'] {
+    display: none;
+}
+.content-wrapper input[type="submit"] {
+    display: block;
+    margin: 0 5%;
+    padding: 0.8em 3em;
+    background-color: #1784c7;
+    border-radius: .25em;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+.content-wrapper input[type="submit"]:hover {
+    background-color: #1a93de;
+}
+.form-horizontal label:first-child {
+    font-family: 'Roboto', sans-serif;
+    display: none;
+}
+.form-horizontal .control-label label {
+    display: block;
+    margin: 0 5%;
+    padding: 1em 0;
+    background-color: #1784c7 !important;
+    border-radius: .25em;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+.cat_prev {
+    display: block;
+    margin: 10px 5%;
+    padding: 1em 0;
+    border-radius: .25em;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+.save-btn {
+    display: block;
+    margin: 0 5%;
+    padding: 0.5em 1.5em 0.5em 1em;
+    background-color: #4abdac;
+    border-radius: .25em;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+.drop select {
+    outline: none;
+    padding: 10px 30px 10px 10px;
+    display: block;
+    width: 90%;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    margin: 30px auto;
+    font-family: "Roboto Light", "Open Sans", Serif;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url("../images/options.png") no-repeat 99% 20% #f4f4f4;
+}
+.area {
+    width: 80%;
+    float: left;
+}
+.catDisplay {
+    width: 20%;
+    float: left;
+    border: 1px solid #eeeeee;
+    margin-top: 30px;
+    height: 300px;
+    overflow-y: scroll;
+    border-radius: 3px;
+}
+.catDisplay h2 {
+    color: #2c3136;
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid #eeeeee;
+    font-family: "Roboto Light", "Open Sans", Serif;
+}
+.catDisplay li {
+    padding: 7px;
+    background-color: #eeeeee;
+    border-bottom: 1px groove #f4f4f4;
+}
