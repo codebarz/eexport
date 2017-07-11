@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ("db.php");
 
 $db = new MyDB();
@@ -138,6 +139,318 @@ $db = new MyDB();
           Account Number: 9383939302
         </div>
     </div>
+    <div class="pay_verify">
+        <a href="verify.php">Verify Payment</a>
+        <a  class="payverlink" href="exbronzeregistrationform.php">Continue to registration</a>
+    </div>
+</div>
+<div class="bpayment">
+  <div class="close_6"><img src="images/close.png"></div>
+    <div class="bank_pay">
+      <img src="images/fcmb.png">
+      <div class="condrop_2">
+          Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+      </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/fidelity.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 201983748
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/firstbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 0187289387
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/wema.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8493084759
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/heritage.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9102839430
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/skye.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+        </div>
+      </div>
+    <div class="bank_pay">
+        <img src="images/gtbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 7263538392
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/sterling.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8273920211
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/zenithbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 91827265363
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/stanbic.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9383939302
+        </div>
+    </div>
+    <div class="pay_verify">
+        <a href="verify.php">Verify Payment</a>
+        <a  class="payverlink" href="exbronzeregistrationform.php">Continue to registration</a>
+    </div>
+</div>
+<div class="gpayment">
+  <div class="close_6"><img src="images/close.png"></div>
+    <div class="bank_pay">
+      <img src="images/fcmb.png">
+      <div class="condrop_2">
+          Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+      </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/fidelity.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 201983748
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/firstbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 0187289387
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/wema.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8493084759
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/heritage.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9102839430
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/skye.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+        </div>
+      </div>
+    <div class="bank_pay">
+        <img src="images/gtbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 7263538392
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/sterling.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8273920211
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/zenithbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 91827265363
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/stanbic.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9383939302
+        </div>
+    </div>
+    <div class="pay_verify">
+        <a href="verify.php">Verify Payment</a>
+        <a  class="payverlink" href="exgoldregistrationform.php">Continue to registration</a>
+    </div>
+</div>
+<div class="bpayment">
+  <div class="close_6"><img src="images/close.png"></div>
+    <div class="bank_pay">
+      <img src="images/fcmb.png">
+      <div class="condrop_2">
+          Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+      </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/fidelity.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 201983748
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/firstbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 0187289387
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/wema.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8493084759
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/heritage.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9102839430
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/skye.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+        </div>
+      </div>
+    <div class="bank_pay">
+        <img src="images/gtbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 7263538392
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/sterling.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8273920211
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/zenithbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 91827265363
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/stanbic.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9383939302
+        </div>
+    </div>
+    <div class="pay_verify">
+        <a href="verify.php">Verify Payment</a>
+        <a  class="payverlink" href="exbronzeregistrationform.php">Continue to registration</a>
+    </div>
+</div>
+<div class="spayment">
+  <div class="close_6"><img src="images/close.png"></div>
+    <div class="bank_pay">
+      <img src="images/fcmb.png">
+      <div class="condrop_2">
+          Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+      </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/fidelity.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 201983748
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/firstbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 0187289387
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/wema.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8493084759
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/heritage.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9102839430
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/skye.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 2008046860
+        </div>
+      </div>
+    <div class="bank_pay">
+        <img src="images/gtbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 7263538392
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/sterling.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 8273920211
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/zenithbank.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 91827265363
+        </div>
+    </div>
+    <div class="bank_pay">
+        <img src="images/stanbic.png">
+        <div class="condrop_2">
+            Account Name: Nigeriaeexport<br>
+          Account Number: 9383939302
+        </div>
+    </div>
+    <div class="pay_verify">
+        <a href="verify.php">Verify Payment</a>
+        <a  class="payverlink" href="exsilverregistrationform.php">Continue to registration</a>
+    </div>
 </div>
 <div class="blur_bg"></div>
 <div class="back_to_top"></div>
@@ -176,9 +489,10 @@ $db = new MyDB();
     }
     else
     {
+        $id = $_SESSION['log_id'];
         echo "<form action=\"logout.php\" method=\"post\" enctype=\"multipart/form-data\">
             <input type=\"submit\" name=\"logout\" id=\"logout\" value=\"Logout\">
-        </form><a href='exporter.php'>My Account</a>";
+        </form><a class='myAcc' href='exporter.php?log_id=$id'>My Account</a>";
     }
     ?>
 </div>
@@ -203,12 +517,12 @@ $db = new MyDB();
         to get you started.</p>
     <ul><br>
       <p style="font-size: 26px;"><strong>We get you connected to...</strong></p>
-        <li><span>Buyers for your products</span></li>
         <li><span>Local Buying Agents</span></li>
         <li><span>Freight Forwarders</span></li>
-        <li><span>Exporters</span></li>
+        <li><span>International Buyers</span></li>
         <p style="font-size: 26px;"><strong>While also providing access to...</strong></p>
         <li><span>Export Search Engine</span></li>
+        <li><span>HS Codes</span></li>
         <li><span>Shipping Companies Schedules</sapn></li>
         <li><span>Background Checks</span></li>
         <li><span>Commodity Prices</span></li>
@@ -377,12 +691,14 @@ $db = new MyDB();
     <div class="price_table">
       <div class="price_card gold">
             <div class="price_header">
+                <span class="priceicon"><img src="images/free.png"></span>
                 <span class="price">FREE</span>
                 <span class="name">FREE MEMBERSHIP</span>
             </div>
             <ul class="features">
                 <li>&#10003; Shipping Line Schedules</li>
                 <li>&#10003; All Other Free Services</li>
+                <li>&#10003; Access to HS Codes</li>
                 <li>&Cross; Export Search Engine</li>
                 <li>&Cross; Commodity Prices</li>
                 <li>&Cross; Live Chat With our Export Experts</li>
@@ -390,10 +706,11 @@ $db = new MyDB();
                 <li>&Cross; Background Check</li>
                 <li>&Cross; 24/7 Live Support</li>
             </ul>
-            <input type="submit" name="free" id="free" value="CHOOSE PLAN">
+            <a href="registrationform.php"><input type="submit" name="free" id="free" value="CHOOSE PLAN"></a>
       </div>
     <div class="price_card gold">
           <div class="price_header">
+              <span class="priceicon"><img src="images/bronz.png"></span>
               <span class="price">&#8358; 30,000</span>
               <span class="name">BRONZE</span>
           </div>
@@ -402,15 +719,17 @@ $db = new MyDB();
               <li>&#10003; Shipping Line Schedules</li>
               <li>&#10003; Commodity Prices</li>
               <li>&#10003; Live Chat With our Export Experts</li>
+              <li>&#10003; Access to HS Codes</li>
               <li>&Cross; Commodity/Quality Control</li>
               <li>&Cross; Background Check</li>
               <li>&Cross; 24/7 Live Support</li>
               <li>&Cross; All Other Free Services</li>
           </ul>
-          <button>Choose Plan</button>
+          <button class="bronzepac" onclick="bronze()">Choose Plan</button>
     </div>
     <div class="price_card gold">
           <div class="price_header">
+              <span class="priceicon"><img src="images/silv.png"></span>
               <span class="price">&#8358; 50,000</span>
               <span class="name">SILVER</span>
           </div>
@@ -422,12 +741,14 @@ $db = new MyDB();
               <li>&#10003; Background Check</li>
               <li>&#10003; 24/7 Live Support</li>
               <li>&#10003; All Other Free Services</li>
+              <li>&#10003; Access to HS Codes</li>
               <li>&Cross; Live Chat With our Export Experts</li>
           </ul>
-          <button>Choose Plan</button>
+          <button class="silverpac" onclick="silver()">Choose Plan</button>
     </div>
     <div class="price_card gold">
           <div class="price_header">
+              <span class="priceicon"><img src="images/gol.png"></span>
               <span class="price">&#8358; 100,000</span>
               <span class="name">GOLD</span>
           </div>
@@ -438,10 +759,11 @@ $db = new MyDB();
               <li>&#10003; Live Chat With our Export Experts</li>
               <li>&#10003; Commodity/Quality Control</li>
               <li>&#10003; Background Check</li>
+              <li>&#10003; Access to HS Codes</li>
               <li>&#10003; 24/7 Live Support</li>
               <li>&#10003; All Other Free Services</li>
           </ul>
-          <button>Choose Plan</button>
+          <button class="goldpac">Choose Plan</button>
     </div>
   </div>
 </div>
@@ -472,16 +794,62 @@ $db = new MyDB();
         $('.price_card button').click(function() {
             $('.payment').fadeIn('slow');
         });
+        $('.price_card .bronzepac').click(function() {
+            $('.bpayment').fadeIn('slow');
+        });
+        $('.price_card .silverpac').click(function() {
+            $('.spayment').fadeIn('slow');
+        });
+        $('.price_card .goldpac').click(function() {
+            $('.gpayment').fadeIn('slow');
+        });
         $('.close_6').click(function() {
             $('.payment').fadeOut('slow');
         });
-        $('.price_card input[type="submit"]').click(function(e) {
-          e.preventDefault();
-            $('.freemember').fadeIn('slow');
+        $('.close_6').click(function() {
+            $('.bpayment').fadeOut('slow');
         });
+        $('.close_6').click(function() {
+            $('.spayment').fadeOut('slow');
+        });
+        $('.close_6').click(function() {
+            $('.gpayment').fadeOut('slow');
+        });
+        // $('.price_card input[type="submit"]').click(function(e) {
+        //   e.preventDefault();
+        //     $('.freemember').fadeIn('slow');
+        // });
         $('.close_6').click(function() {
             $('.freemember').fadeOut('slow');
         });
+        $("a").on('click', function(){
+
+       if ($(this).hasClass('goldpac')) {
+           window.location="exgoldregistrationform.php"; /* or exbronzeregistrationform.php for example */
+       } else if ($(this).hasClass('silverpac')) {
+           window.location="exgoldregistrationform.php"; /* or exbronzeregistrationform.php for example */
+       } else if ($(this).hasClass('bronzepac')) {
+           window.location="exgoldregistrationform.php"; /* or exbronzeregistrationform.php for example */
+       }
+   });
+        // function bronze(){
+        //   changeLink('exbronzeregistrationform');
+        // }
+        // function silver(){
+        //   changeLink('exsilverregistrationform.php');
+        // }
+        // function changeLink(url){
+        //   $('.payverlink').attr('href',url);
+        // }
+        // $('.bronzepac').click(function () {
+        //     $('.payverlink').setAttribute('href', 'exbronzeregistrationform.php');
+        // });
+        // $('.silverpac').click(function () {
+        //     $('.payverlink').setAttribute('href', 'exsilverregistrationform.php');
+        // });
+        // $('.goldpac').click(function () {
+        //     $('.payverlink').setAttribute('href', 'exgoldregistrationform.php');
+        // });
     });
     $(document).scroll(function () {
         var x = $(this).scrollTop();

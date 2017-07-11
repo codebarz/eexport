@@ -7,7 +7,12 @@ $db = new MyDb();
 
 if (!isset($_SESSION['log_name']) || !isset($_SESSION['log_id']))
 {
-    echo "<script>alert('You need to have an account to chat with the bank')</script>";
+    // echo "<div class='bankAlert'>
+    // <div class='bnMsgBox'>
+    // <img src='images/sadface.png'>
+    // <p>You need to have an account to chat with the bank</p>
+    // </div>
+    // </div>";
 }
 ?>
 <!DOCTYPE html>
@@ -76,7 +81,7 @@ EOF;
         {
             $hash = $hrow['hash'];
 
-        echo "<a href='user_msg.php?hash=$hash' class='bank_icons_img_btn' name='user_connect'></a>";
+        echo "<a href='chatportal.php?group_hash=$hash' class='bank_icons_img_btn' name='user_connect'></a>";
         }
     }
     else

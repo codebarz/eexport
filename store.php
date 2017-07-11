@@ -11,7 +11,153 @@ if (isset($_SESSION['id'])) {
     echo "Not logged in";
 }
 ?>
-<!--<div class="loader"></div>-->
+<!--<div class="loader"></div>-->]
+<!-- <div class="grid">
+    <div class="bn_grid_logo">
+      <img src="images/heritage.png">
+      <div class="dim"></div>
+      <div class="bn_text">Heritage Bank is an International Bank Located across the Globe. Residing in over 500 countries across the
+        globe. Present in over 5 continents of the world.. <br><br>
+        <div class="bn_active">• Active</div>
+      </div>
+    </div>
+    <div class="bn_grid_name">Heritage Bank</div>
+    <div class="grid_icon_con">
+    <div class="bn_grid_icon">
+        <div class="grid_icon"><img src="images/more.png"></div>
+        <div class="grid_icon"><img src="images/sendmsg.png"></div>
+        <div class="grid_icon"><img src="images/call.png"></div>
+    </div>
+  </div>
+</div>
+<div class="grid">
+    <div class="bn_grid_logo">
+      <img src="images/diamond.png">
+      <div class="dim"></div>
+      <div class="bn_text">Diamond Bank is an International Bank Located across the Globe. Residing in over 500 countries across the globe...<br><br>
+      <div class="bn_active">• Active</div>
+      </div>
+    </div>
+    <div class="bn_grid_name">Diamond Bank</div>
+    <div class="grid_icon_con">
+    <div class="bn_grid_icon">
+        <div class="grid_icon"><img src="images/more.png"></div>
+        <div class="grid_icon"><img src="images/sendmsg.png"></div>
+        <div class="grid_icon"><img src="images/call.png"></div>
+    </div>
+  </div>
+</div>
+<div class="grid">
+  <div class="bn_grid_logo">
+    <img src="images/fidelity.png">
+    <div class="dim"></div>
+    <div class="bn_text">Fidelity Bank is an International Bank Located across the Globe. Residing in over 500 countries across the globe...<br><br>
+    <div class="bn_active">• Active</div>
+    </div>
+  </div>
+  <div class="bn_grid_name">Fidelity Bank</div>
+  <div class="grid_icon_con">
+  <div class="bn_grid_icon">
+      <div class="grid_icon"><img src="images/more.png"></div>
+      <div class="grid_icon"><img src="images/sendmsg.png"></div>
+      <div class="grid_icon"><img src="images/call.png"></div>
+  </div>
+</div>
+</div>
+<div class="grid">
+  <div class="bn_grid_logo">
+    <img src="images/firstbank.png">
+    <div class="dim"></div>
+    <div class="bn_text">First Bank Nigeria Plc. is an International Bank based in Nigeria with branches
+      Located across the Globe. Residing in over 500 countries across the globe...<br><br>
+      <div class="bn_active">• Active</div>
+    </div>
+  </div>
+  <div class="bn_grid_name">First Bank</div>
+  <div class="grid_icon_con">
+  <div class="bn_grid_icon">
+      <div class="grid_icon"><img src="images/more.png"></div>
+      <div class="grid_icon"><img src="images/sendmsg.png"></div>
+      <div class="grid_icon"><img src="images/call.png"></div>
+  </div>
+</div>
+</div>
+<div class="grid">
+  <div class="bn_grid_logo">
+    <img src="images/fcmb.png">
+    <div class="dim"></div>
+    <div class="bn_text">First City Monument Bank is an International Bank Located across the Globe.
+      Residing in over 500 countries across the globe...<br><br>
+      <div class="bn_active">• Active</div>
+    </div>
+  </div>
+  <div class="bn_grid_name">First City Monument Bank</div>
+  <div class="grid_icon_con">
+  <div class="bn_grid_icon">
+      <div class="grid_icon"><img src="images/more.png"></div>
+      <div class="grid_icon"><img src="images/sendmsg.png"></div>
+      <div class="grid_icon"><img src="images/call.png"></div>
+  </div>
+</div>
+</div>
+<div class="grid grayscale">
+  <div class="bn_grid_logo">
+    <img src="images/wema.png">
+    <div class="dim"></div>
+    <div class="bn_text">Wema Bank is an International Bank with many branches across the Globe.
+      We offer loans with low interest rates. Residing in over 500 countries across the globe...<br>
+    </div>
+  </div>
+  <div class="bn_grid_name">Wema Bank</div>
+  <div class="grid_icon_con">
+  <div class="bn_grid_icon">
+      <div class="grid_icon"><img src="images/more.png"></div>
+      <div class="grid_icon"><img src="images/sendmsg.png"></div>
+      <div class="grid_icon"><img src="images/call.png"></div>
+  </div>
+</div>
+</div>
+<div class="grid">
+  <div class="bn_grid_logo">
+    <img src="images/stanbic.png">
+    <div class="dim"></div>
+    <div class="bn_text">Stanbic IBTC Bank is an International Bank with many branches across the Globe.
+      We offer loans with low interest rates. Residing in over 500 countries across the globe...<br>
+    </div>
+  </div>
+  <div class="bn_grid_name">Stanbic IBTC Bank</div>
+  <div class="grid_icon_con">
+  <div class="bn_grid_icon">
+      <div class="grid_icon"><img src="images/more.png"></div>
+      <div class="grid_icon"><img src="images/sendmsg.png"></div>
+      <div class="grid_icon"><img src="images/call.png"></div>
+  </div>
+</div> -->
+<!-- <div id="grid_container">
+    <div style="height: 80px"><div><div class="dim"></div><img src="images/zenithlogo.png"></div></div>
+    <div style="height: 160px"><div>2</div></div>
+    <div style="height: 100px"><div>3</div></div>
+    <div style="height: 190px"><div>4</div></div>
+    <div style="height: 200px"><div>5</div></div>
+    <div style="height: 240px"><div>6</div></div>
+    <div style="height: 240px"><div>7</div></div>
+    <div style="height: 140px"><div>8</div></div>
+    <div style="height: 340px"><div>9</div></div>
+    <div style="height: 160px"><div>10</div></div>
+    <div style="height: 170px"><div>11</div></div>
+    <div style="height: 150px"><div>12</div></div>
+    <div style="height: 190px"><div>13</div></div>
+    <div style="height: 170px"><div>14</div></div>
+    <div style="height: 180px"><div>15</div></div>
+    <div style="height: 130px"><div>16</div></div>
+    <div style="height: 170px"><div>17</div></div>
+    <div style="height: 210px"><div>18</div></div>
+    <div style="height: 120px"><div>19</div></div>
+    <div style="height: 160px"><div>20</div></div>
+    <div style="height: 180px"><div>21</div></div>
+    <div style="height: 130px"><div>22</div></div>
+    <div style="height: 240px"><div>23</div></div>
+</div> -->
 <div class="side_nav">
     <div class="close_nav">
         <div class="icon-bar-user-3"></div>

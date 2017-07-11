@@ -55,6 +55,12 @@
               <input type="text" name="b_acc_add" id="b_acc_add" placeholder="Bank Address"><br>
               <input type="password" name="b_acc_pword" id="b_acc_pword" placeholder="Password">
               <input type="text" name="b_acc_r_pword" id="b_acc_r_pword" placeholder="Retype password">
+              <input type="text" name="b_founded" id="b_founded" placeholder="Date Founded">
+              <input type="text" name="b_owner" id="b_owner" placeholder="Owners">
+              <select name="b_available" id="b_available">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+              </select>
               <div class="b_img_prev"><img id="b_img_prev" src=""></div><br>
               <label for="b_c_logo">Upload Company logo</label><span>400px X 400px (for logo size)</span>
               <input type="file" name="b_c_logo" id="b_c_logo" onchange="logoPrev()" placeholder="Company Logo"><br>
@@ -112,7 +118,7 @@
         <a class="crt_acc" href="">Create an Account</a>
   </div>
 </div>
-<div class="row" style="background: radial-gradient(circle closest-corner at 50% 50%, #33753E 0%, #003832 80%);">
+<div class="row" style="background: #45b475;">
   <div class="row_cols">
       <br><br><div class="row_cycle"></div>
       <h1>Lightning fast messaging system for you and your clients</h1>
@@ -133,7 +139,7 @@
   <h1>Its Really All About Growth...</h1>
 </div>
 <div class="sm_row">
-  <div class="sm_row_col_2" style="background: radial-gradient(circle closest-corner at 50% 50%, #33753E 0%, #003832 80%);">
+  <div class="sm_row_col_2" style="background: #45b475;">
     <div class="xl_row_col">
         <div class="xl_sm_row_col">
             <div class="row_ft">

@@ -71,23 +71,30 @@ while ($row = $sql->fetchArray(SQLITE3_ASSOC)) {
     </div>
     <div class='bank_name'><p>$bankname.</p></div>
     <div class='bank_icons'>
-        <a href='editbankaccount.php?bname=$bankname'><div class='bank_icons_img' title='Edit Account'><img src='images/editbank.png'></div></a>";
+        <a href='editbankaccount.php?bname=$bankname'>
+        <div class='bank_icons_img' title='Edit Account'><img src='images/editbank.png'></div></a>";
+?>
+<a href='chatportal.php'><div class='bank_icons_img ungray' title='Send a message'>
+            <img src='images/bnsendmsg.png'>
 
+<?php
         $unread = 0;
 
-        $lsql = $db->query("SELECT group_hash FROM chatportal WHERE flag = '$unread' ORDER BY from_id ASC LIMIT 1");
+        $lsql = $db->query("SELECT group_hash FROM chatportal WHERE (flag = '$unread' AND from_id = '$bname') OR (flag = '$unread' AND to_id = '$bname')");
 
         while ($lrow = $lsql->fetchArray(SQLITE3_ASSOC))
         {
             $group_hash = $lrow['group_hash'];
 
-            echo "<a href='chatportal.php?group_hash=$group_hash'><div class='bank_icons_img ungray' title='Send a message'>
-            <img src='images/bnsendmsg.png'>
+            echo "
             <div class='msgn_icon'></div>
-            </div>
-            </a>";
+            ";
         }
+?>
 
+</div>
+</a>
+<?php
         echo "<div class='bank_icons_img' title='Call'><img src='images/bncall.png'></div>
     </div>
     <img src='$bankban'>

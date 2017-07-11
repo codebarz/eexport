@@ -1,23 +1,17 @@
 function searchq() {
     var searchTxt = $("input[name='mainSearch']").val();
 
-    $.post("searchfetch.php", {searchVal: searchTxt}, function (echo) {
+    $.post("searchfetcher.php", {searchVal: searchTxt}, function (echo) {
         $('.quesarea').html(echo);
     });
 }
 $(document).ready(function() {
   $('#mainSearch').on("change keyup paste", function () {
       if ($('#mainSearch').val().length > 0) {
-          $('#mainSearch').css("margin-top", "1.5%");
-          $('#mainSearch').css("margin-left", "5%");
-          $('.mainSearch').css("text-align", "left");
           $('.mainSearch').css("background", "#fff");
           $('.quesDisplay').css("display", "block");
           $('body').css("background", "#fff");
       } else {
-          $('#mainSearch').css("margin-top", "15%");
-          $('.mainSearch').css("text-align", "center");
-          $('#mainSearch').css("margin-left", "0");
           $('.mainSearch').css("background", "transparent");
           $('.quesDisplay').css("display", "none");
           $('body, html').css("background", "#f7f7f7");
@@ -30,18 +24,19 @@ $(document).ready(function() {
 
   function load_data (limit, satrt) {
     $.ajax({
-      url: "searchfetch.php",
+      url: "searchfetcher.php",
       method: "POST",
       data: {limit:limit, start:start},
       cache: false,
       success: function(data) {
         $('.quesarea').append(data);
         if (data == '') {
-          $('.loadingmsg').html("No data Found");
+          $('.loadfin').css("display", "block");
+          $('.loadingmsg').css("display", "none");
           action = 'active';
         }
         else {
-          $('.loadingmsg').html("Loading...");
+          $('.loadingmsg').css("display", "block");
           action = 'inactive';
         }
       }

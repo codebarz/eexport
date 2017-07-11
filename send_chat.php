@@ -1,26 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ORUME
- * Date: 2/19/2017
- * Time: 1:48 PM
- */
 require_once ("db.php");
 $db = new MyDB();
 session_start();
 
-if (isset($_POST['rep_msg']) && !empty($_POST['rep_msg']) || isset($_POST['hash']) && !empty($_POST['hash']))
+if (isset($_POST['userMsgField']) && !empty($_POST['userMsgField']) || isset($_POST['hash']) && !empty($_POST['hash']))
 {
-    $hash = (int)$_GET['hash'];
     $my_id = $_SESSION['log_id'];
-    $rep_msg = $_POST['rep_msg'];
+    $rep_msg = $_POST['userMsgField'];
     $hash = $_SESSION['hash'];
     $flag = 0;
 
-
     $sql =<<<EOF
-SELECT hash, user_one, user_two FROM connect WHERE (user_one = '$my_id' AND hash = '$hash') OR (user_two = '$my_id' AND hash = '$hash');
+    SELECT * FROM connect WHERE (user_one = '$my_id' AND hash = '$hash') OR (user_two = '$my_id' AND hash = '$hash');
 EOF;
+
     $ret = $db->query($sql);
 
     while ($row = $ret->fetchArray(SQLITE3_ASSOC))
@@ -28,7 +21,7 @@ EOF;
         $user_one = $row['user_one'];
         $user_two = $row['user_two'];
 
-        if ($user_one = $my_id)
+        if ($user_one == $my_id)
         {
             $to_id = $user_two;
         }
@@ -37,28 +30,36 @@ EOF;
             $to_id = $user_one;
         }
 
-        $rsql = <<<EOF
-INSERT INTO messager (message, group_hash, from_id, to_id, flag) VALUES('$rep_msg', '$hash', '$my_id', '$to_id', '$flag');
+
+        $isql =<<<EOF
+        INSERT INTO messager (message, group_hash, from_id, flag, to_id) VALUES (:message, :group_hash, :from_id, :flag, :to_id);
+EOF;
+        $bsql =<<<EOF
+        INSERT INTO chatportal (message, group_hash, from_id, flag, to_id) VALUES (:message, :group_hash, :from_id, :flag, :to_id);
 EOF;
 
-        $bnsql = <<<EOF
-INSERT INTO chatportal (message, group_hash, from_id, to_id, flag) VALUES('$rep_msg', '$hash', '$my_id', '$to_id', '$flag');
-EOF;
-        $rret = $db->exec($rsql);
-        $bnret = $db->exec($bnsql);
+        $stmt = $db->prepare($isql);
+        $bstmt = $db->prepare($bsql);
 
-        $ursql = <<<EOF
-SELECT * FROM users WHERE userid = '$my_id';
-EOF;
+        $stmt->bindValue(':message', $rep_msg, SQLITE3_TEXT);
+        $stmt->bindValue(':group_hash', $hash, SQLITE3_INTEGER);
+        $stmt->bindValue(':from_id', $my_id, SQLITE3_INTEGER);
+        $stmt->bindValue(':flag', $flag, SQLITE3_INTEGER);
+        $stmt->bindValue(':to_id', $to_id, SQLITE3_TEXT);
 
+        $bstmt->bindValue(':message', $rep_msg, SQLITE3_TEXT);
+        $bstmt->bindValue(':group_hash', $hash, SQLITE3_INTEGER);
+        $bstmt->bindValue(':from_id', $my_id, SQLITE3_INTEGER);
+        $bstmt->bindValue(':flag', $flag, SQLITE3_INTEGER);
+        $bstmt->bindValue(':to_id', $to_id, SQLITE3_TEXT);
 
-        $urret = $db->query($ursql);
+        $result = $stmt->execute();
+        $bresult = $bstmt->execute();
 
-        while ($urrow = $urret->fetchArray(SQLITE3_ASSOC)) {
-            $from_fname = $urrow['fname'];
-            $from_img = $urrow['image'];
-
-            header('Location: user_msg.php?hash=' . $hash);
+        if ($reuslt && $bresult)
+        {
+            echo "GHood";
         }
     }
 }
+

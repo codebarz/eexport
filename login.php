@@ -21,25 +21,14 @@ EOF;
         {
             $id = $row['userid'];
             $regas = $row['regas'];
-            $exporter = "Exporter";
-            $importer = "Importer";
-            $seller = "seller";
-            $interactive = "interactive";
+            $uemail = $row['uemail'];
 
-            if ($regas == $exporter || $regas == $importer)
-            {
             $_SESSION['log_id'] = $id;
         $_SESSION['log_name'] = $username;
-        header("Location: exporter.php");
+        $_SESSION['regas'] = $regas;
+        $_SESSION['uemail'] = $uemail;
+        header("Location: index.php?log_id=$id");
         exit();
-            }
-           if ($regas == $interactive)
-           {
-               $_SESSION['log_id'] = $id;
-               $_SESSION['log_name'] = $username;
-               header("Location: get_questions.php?category_id=5");
-               exit();
-           }
         }
     }
     else

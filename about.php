@@ -1,8 +1,8 @@
 <?php
+session_start();
 require_once ("db.php");
 $db = new MyDb();
 
-session_start();
 if (!isset($_SESSION['log_name']))
 {
     // echo "<script>alert('Please ensure you login or signup')</script>";
@@ -84,9 +84,10 @@ else
     }
     else
     {
+        $id = $_SESSION['log_id'];
         echo "<form action=\"logout.php\" method=\"post\" enctype=\"multipart/form-data\">
             <input type=\"submit\" name=\"logout\" id=\"logout\" value=\"Logout\">
-        </form><a href='exporter.php'>My Account</a>";
+        </form><a class='myAcc' href='exporter.php?log_id=$id'>My Account</a>";
     }
     ?>
 </div>
@@ -255,16 +256,16 @@ else
   </div> -->
   <script type="text/javascript">
   $(document).scroll(function() {
-    var x = $(this).scrollTop();
-    if (x > 200)
-    {
-        $('.home_head').css("background", "#fff");
-    }
-    else
-    {
-        $('.home_head').css("background", "transparent", "transition", ".5s");
-    }
-  });
+  //   var x = $(this).scrollTop();
+  //   if (x > 200)
+  //   {
+  //       $('.home_head').css("background", "#fff");
+  //   }
+  //   else
+  //   {
+  //       $('.home_head').css("background", "transparent", "transition", ".5s");
+  //   }
+  // });
   </script>
 </body>
 </html>

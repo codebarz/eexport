@@ -3,7 +3,7 @@ require_once ("db.php");
 $db = new MyDB();
 
 session_start();
-if (!isset($_SESSION['log_name']) || !isset($_SESSION['log_id']))
+if (!isset($_SESSION['log_name']) || !isset($_SESSION['log_id']) || !isset($_SESSION['regas']))
 {
     header("Location: index.php");
 }
@@ -22,28 +22,29 @@ $userid = $row['userid'];
 $badge = $row['regas'];
 $profimages = $row['profimages'];
 $cname = $row['cname'];
-
 ?>
 <!doctype html>
 <html xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
-    <title>E-Xport | Welcome</title>
+    <title>Nigeriaeexport | Welcome</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
-
-    <link rel="stylesheet" href="fonts/font-awesome.css">
-
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/font/typicons.css">
+    <link rel="stylesheet" href="js/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="js/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.min.css">
     <script src="js/popup.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script src="js/masonry/masonry.pkgd.js"></script>
+    <script src="js/OwlCarousel2-2.2.1/dist/owl.carousel.min.js"></script>
     <script type="text/javascript" src="js/msg.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+    <!-- <script src="css/bootstrap-3.3.6/dist/css/bootstrap.css"></script> -->
     <script type="text/javascript" src="js/cycle2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-          rel="stylesheet">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <script type="text/javascript">
         function searchq() {
             var searchTxt = $("input[name='hssearch']").val();
@@ -52,315 +53,354 @@ $cname = $row['cname'];
                 $('.searchdrop').html(echo);
             });
         }
+        function searchq_4() {
+            var searchTxt = $("input[name='hssearch']").val();
+
+            $.post("allhssearch.php", {searchVal: searchTxt}, function (echo) {
+                $('.allHs').html(echo);
+            });
+        }
         $(document).ready(function() {
           $('#hssearch').on("change keyup paste", function () {
               if ($('#hssearch').val().length > 0) {
-                  $('.searchdrop').slideDown();
+                  $('.allHs').fadeIn().animate({maxHeight: "300px"}, 350);
               } else {
-                  $('.searchdrop').slideUp();
+                  $('.allHs').fadeOut();
               }
           });
         });
     </script>
 </head>
-<body style="background: #fff">
-<div class="ex_head">
-    <div class="ex_head_content">
-        <div class="ex_uname"><p><?php echo "$uname"; ?></p></div>
-        <div class="ex_notify">
-            <div class="ex_homepage"></div>
-            <div class="ex_notification"></div>
-            <div class="ex_msg_notification"></div>
-            <div class="ex_request">
-                <div class="condrop">
-                    <ul>
-                        <li>Export Search Engine</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="ex_connecting">
-              <div class='condrop'>
-                  <ul>
-                      <li>Connect with:</li>
-                      <li>Exporters</li>
-                      <li>International Buyers</li>
-                      <li>LBAs</li>
-                      <li>Freight Forwarders</li>
-                      <li>Export Agencies</li>
-                      <li class="agent">
-                        Export Finance
-                        <div class="consubdrop">
-                          <ul>
-                              <a href="funding.php"><li>Banks</li></a>
-                              <li>NEXIM</li>
-                          </ul>
-                        </div>
-                      </li>
-                  </ul>
-              </div>
-            </div>
-            <a href="hscodes.php"><div class="hscode">Search HS Code</div></a>
-            <form action="drophssearch.php" method="post" enctype="multipart/form-data">
-                <input type="search" class="hssearch" onkeydown="searchq();" name="hssearch" id="hssearch" placeholder="Search HS Code">
-                <div class="searchdrop">
-                  <?php
+<body style="background: #eee">
+<div class="allHs">
 
-                  $hsql = $db->query("SELECT * FROM hscodes");
-
-                  while ($hrow = $hsql->fetchArray(SQLITE3_ASSOC))
-                  {
-                      $heading = $hrow['heading'];
-                      $tsn = $hrow['tsn'];
-                      $description = $hrow['description'];
-                      $su = $hrow['su'];
-                      $hsid = $hrow['hsid'];
-                      $iat = $hrow['iat'];
-                      $vat = $hrow['vat'];
-
-                      echo "<p class='hscodedis_2'>
-                          Commodity Description - <span>$description </span>
-                          Heading - <span>$heading</span>
-                      </p>";
-                  }
-
-                  ?>
-                </div>
-            </form>
-        </div>
-    </div>
+</div>  
+<div class="small_nav">
+  <ul>
+      <?php echo'<a href="exporter.php?userid='.$id.'"><li class="typcn typcn-home tabactive"><p>Home</p></li></a>';?>
+      <?php echo'<a href="postings.php?userid='.$id.'"><li class="typcn typcn-wi-fi"><p>Requests</p></li></a>';?>
+      <li class="fa fa-bell"><p>Notifications</p></li>
+      <?php echo'<a href="chatbox.php?userid='.$id.'"><li class="fa fa-paper-plane"><p>Messages</p></li></a>';?>
+      <?php echo'<a href="user.php?userid='.$id.'"><li class="typcn typcn-user" style="font-size: 30px"><p>My Account</p></li></a>';?>
+      <form action="logout.php" method="post">
+          <label for="logout"><li class="fa fa-sign-out"><p>Logout</p></li></label>
+          <input style="display: none" type="submit" name="logout" id="logout">
+      </form>
+  </ul>
 </div>
-<div class="ex_tog_menu">
-    <ul>
-        <li>
-            <?php
-
-            echo "<a href='account.php?userid=$userid'>
-<div class='my_account_b'>
-<img class='my_account_i' src='$profimages'>";
-            ?>
-            <?php
-            if ($badge == "Exporter")
-            {
-                echo "<div class='badge'><div class='dot'></div><p>$badge</p></div>";
-            }
-            if ($badge == "Importer")
-            {
-                echo "<div class='badge' style='background: #0a8226'><div class='dot'></div><p>$badge</p></div>";
-            }
-            if ($badge == "Local Buying Agent")
-            {
-                echo "<div class='badge' style='background: #eb3c00'><div class='dot'></div><p>$badge</p></div>";
-            }
-            if ($badge == "Freight")
-            {
-                echo "<div class='badge' style='background: #a8590d'><div class='dot'></div><p>$badge</p></div>";
-            }
-            echo "</div></a>";
-            ?>
-        </li>
-        <li>
-            <form action="logout.php" method="post" enctype="multipart/form-data">
-                <input type="submit" value="Logout" name="logout">
-            </form>
-        </li>
-    </ul>
+<div class="main_board">
+<ul>
+<i class="fa fa-times-circle closing"></i>
+<i style="display:none"class="fa fa-bars opening"></i>
+<li class="nohover">
+<form action="" method="post" enctype="multipart/form-data">
+<input type="search" onkeydown="searchq_4()" name="hssearch" class="hssearch" id="hssearch" placeholder="Search HS Codes">
+</form>
+</li>
+<li class="barheading">Menu</li>
+<?php echo'<a href="search.php?userid='.$id.'"><li>Export Search Engine</li></a>';?>
+<?php echo '<a href="backgroundcheck.php?userid='.$id.'"><li>Background Checks</li></a>';?>
+<li>Quality Control</li>
+<li class="barheading">Main Site</li>
+<a href="index.php"><li>Home</li></a>
+<a href="about.php"><li>About Us</li></a>
+<a href="blog.php"><li>Blog</li></a>
+<a href="gallery.php"><li>Gallery</li></a>
+<a href="contact.php"><li>Contact Us</li></a>
+</ul>
 </div>
-<div class="side_menu">
-    <div class="ex_user"></div>
-    <div class="ex_notification_2"></div>
-    <div class="ex_msg_notification_2"></div>
-    <div class="ex_request_2"></div>
-</div>
-<div class="all_contents">
-  <div class="user_nav_2">
-      <ul>
-          <li style="color: #4abdac;">&rightarrow;</li>
-          <li><a href="">Upcoming Trainings/Seminar</a></li>
-          <li><a href="">Add Upcoming Training/Seminar</a></li>
-          <li><a href="">Request Background Check</a></li>
-          <li><a href="">Connections</a></li>
-      </ul>
-  </div>
-  <div id="cat_image">
-      <div id="slideshow" class="cycle-slideshow"
-           data-cycle-fx = "fade"
-           data-cycle-speed = "600"
-           data-cycle-timeout = "3000"
-           data-cycle-pager = "#pager"
-           data-cycle-next = "#next"
-           data-cycle-prev = "#prev"
-           data-cycle-manual-fx = "scrollHorz"
-           data-cycle-manual-speed = "400"
-           data-cycle-pager-fx = "fade">
-
-          <?php
-          $bsql = <<<EOF
-SELECT banner FROM programs;
+<div class="userSideBar">
+  <div class="exNews">
+    <div id="slide_2">
+    <?php
+    $nsql =<<<EOF
+    SELECT * FROM news_prev ORDER BY id DESC LIMIT 5;
 EOF;
 
-          $bret = $db->query($bsql);
+    $nret = $db->query($nsql);
 
-          if (!$bret)
-          {
-          }
-          else
-          {
-              while ($brow = $bret->fetchArray(SQLITE3_ASSOC))
-              {
-                  $banner = $brow['banner'];
+    while ($nrow = $nret->fetchArray(SQLITE3_ASSOC))
+        {
+            $id = $nrow['id'];
+            $img = $nrow['img'];
+            $news_title = $nrow['news_title'];
+            $news_brief = $nrow['news_brief'];
+            $datestamp = $nrow['date'];
 
-                  echo "<img src='$banner'>";
-              }
-          }
-
-          ?>
-
-      </div>
-      <!--    <div id="pager"></div>-->
-      <img id="prev" src="images/prev1.svg"/>
-      <img id="next" src="images/next1.svg"/>
-  </div>
-    <div class="main_posts">
-        <?php
-        $pql = <<<EOF
-SELECT * FROM users_request ORDER BY req_id DESC;
-EOF;
-            $pret = $db->query($pql);
-
-            while ($prow = $pret->fetchArray(SQLITE3_ASSOC))
-            {
-                $req_title = $prow['req_title'];
-                $min_order = $prow['min_order'];
-                $poi = $prow['poi'];
-                $pay_method = $prow['pay_method'];
-                $req_brief = $prow['req_brief'];
-                $post_id = $prow['post_id'];
-
-                $usql =<<<EOF
-SELECT * FROM users WHERE userid = '$post_id';
-EOF;
-                $uret = $db->query($usql);
-
-                while ($urow = $uret->fetchArray(SQLITE3_ASSOC))
-                {
-
-                    $badge = $urow['regas'];
-                    $cname = $urow['cname'];
-                    $profimages = $urow['profimages'];
-
-                    echo "<div class='user_post'>
-            <div class=\"post_title\"><p>$req_title</p></div>
-            <div class=\"poster\"><img src='$profimages'></div>
-            <div class=\"poster_name\"><p>$cname</p></div>
-            <div class=\"post_req_details\"><p>$req_brief</p></div>
-            <div class=\"post_requirements\">
-                <p>Min Order: <span>$min_order</span></p>
-                <p>POI: <span>$poi</span></p>
-                <p>Payment Method: <span>$pay_method</span></p>
+            echo "<div>
+            <img src='$img'>
+            <p style='font-size: 12px;'><a style='color: #111' href='fullnews.php?id=$id'>$news_title</a></p>
             </div>";
-                    echo "<div class=\"post_badge_contact\">";
-                    ?>
-                    <?php
-                    if ($badge == "Exporter")
-                    {
-                        echo "<div class='badge_2'><div class='dot'></div><p>$badge</p></div>";
-                    }
-                    if ($badge == "Importer")
-                    {
-                        echo "<div class='badge_2' style='background: #0a8226'><div class='dot'></div><p>$badge</p></div>";
-                    }
-                    if ($badge == "Local Buying Agent")
-                    {
-                        echo "<div class='badge_2' style='background: #eb3c00'><div class='dot'></div><p>$badge</p></div>";
-                    }
-                    if ($badge == "Freight")
-                    {
-                        echo "<div class='badge_2' style='background: #a8590d'><div class='dot'></div><p>$badge</p></div>";
-                    }
-                    echo "</div></div>";
-                }
-            }
         }
-        ?>
-    </div>
-    <div class="news_others">
-        <div id="slide">
-            <?php
-            $nwql = <<<EOF
-SELECT * FROM news_prev;
-EOF;
-            $nwret = $db->query($nwql);
-
-            while ($nwrow = $nwret->fetchArray(SQLITE3_ASSOC))
-            {
-                $id = $nwrow['id'];
-                $img = $nwrow['img'];
-                $news_title = $nwrow['news_title'];
-                $news_brief = $nwrow['news_brief'];
-                $datestamp = $nwrow['date'];
-
-                echo "<div>
-<img src='$img'>
-<p style='font-size: 16px;'><a style='color: #4abdac' href='fullnews.php?id=$id'>$news_title</a></p>
-<p>$news_brief</p><br>
-<p style='font-weight: 700; color: #999; font-style: italic'>$datestamp</p>
-</div>";
-            }
-
-            ?>
-
-        </div>
-        <div id="banner">
-            <img src="images/EXPORT%20BANNER.png">
-        </div>
-    </div>
+    ?>
+  </div>
 </div>
-<div class="foot"></div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var tog_menu = document.getElementsByClassName('ex_tog_menu');
-        var username = document.getElementsByClassName('ex_uname');
-        $(username).click(function () {
-            $(tog_menu).slideToggle(200);
-        });
-        $('#slide div:first-child').addClass('current');
-        $('.ex_connecting').mouseenter(function() {
-            $(this).find('.condrop').slideDown(300);
-        });
-        $('.ex_connecting').mouseleave(function() {
-            $(this).find('.condrop').slideUp(100);
-        });
-        $('.ex_request').mouseenter(function() {
-            $(this).find('.condrop').slideDown(300);
-        });
-        $('.ex_request').mouseleave(function() {
-            $(this).find('.condrop').slideUp(100);
-        });
-        var finance = $('.condrop ul li')[6];
-        $('.agent').mouseenter(function() {
-            $(this).find('.consubdrop').slideDown(300);
-        });
-        $('.agent').mouseleave(function() {
-            $(this).find('.consubdrop').slideUp(100);
-        });
-    });
-    $(function () {
+<div class="exBanking">
+<div class="owl-carousel owl-theme">
+  <?php
+  $bsql = $db->query("SELECT * FROM banks");
 
-        setInterval ("slideImages()", 5000);
+  while ($brow = $bsql->fetchArray(SQLITE3_ASSOC))
+  {
+      $id = $brow['id'];
+      $banklogo = $brow['banklogo'];
+      $bankbrief = $brow['bankbrief'];
+      $bankname = $brow['bname'];
 
-    });
+      echo "<a href='bankprofile.php?bname=$bankname'><div class='item' data-merge='2'><div class='exBanks'>
+      <img src='$banklogo'>
+      </div>
+      </div></a>";
+  }
+  ?>
+</div>
+</div>
+<div class="exSupport">
+<h3>Supported By</h3>
+<div class="supportLogo">
+<div id="slide_3">
+<div><img src="images/nexim.png"></div>
+<div><img src="images/nepc.png"></div>
+<div><img src="images/nepza.png"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="exFundingSide">
+<?php
+$bsql = $db->query("SELECT * FROM banks");
 
-    function slideImages () {
-        var oCurImage = $("#slide div.current");
-        var oNxtImage = oCurImage.next();
+while ($brow = $bsql->fetchArray(SQLITE3_ASSOC))
+{
+    $id = $brow['id'];
+    $banklogo = $brow['banklogo'];
+    $bankbrief = $brow['bankbrief'];
+    $bankname = $brow['bname'];
 
-        if (oNxtImage.length == 0) {
-            oNxtImage = $("#slide div:first-child");
+    echo "<a href='bankprofile.php?bname=$bankname'><div class='grid_2'>
+        <div class='bn_grid_logo_2'>
+          <img src='$banklogo'>
+      </div>
+    </div></a>";
+}
+?>
+</div>
+<div class="accContent">
+<div class="userPostArea">
+<!-- <div class="postBtn"></<i class="typcn typcn-wi-fi"></i>Post Request></div> -->
+<div class="container">
+<?php
+if ($badge == "International Buyer")
+{
+    $isql = <<<EOF
+    SELECT * FROM toibs ORDER BY req_id DESC;
+EOF;
+
+$iret = $db->query($isql);
+
+while ($irow = $iret->fetchArray(SQLITE3_ASSOC))
+{
+    $req_id = $irow['req_id'];
+    $req_title = $irow['req_title'];
+    $min_order = $irow['min_order'];
+    $poi = $irow['poi'];
+    $req_brief = $irow['req_brief'];
+    $post_id = $irow['post_id'];
+    // $_SESSION['post_id'] = $postid;
+    $towho = $irow['towho'];
+    $commodityimg = $irow['commodityimg'];
+
+    $psql = <<<EOF
+    SELECT * FROM users WHERE userid = '$post_id';
+EOF;
+
+    $pret = $db->query($psql);
+
+    while ($prow = $pret->fetchArray(SQLITE3_ASSOC))
+    {
+        $cname = $prow['cname'];
+        $profimages = $prow['profimages'];
+        $regas = $prow['regas'];
+
+        if ($regas == "International Buyer")
+        {
+            echo '<div class="postSlate">
+            <ul class="slateDetails"><li><img class="ibdetails" src="'.$profimages.'"></li><li>'.$cname.'</li></ul>
+            <div class="slateImg"><img src="'.$commodityimg.'"></div>
+            <div class="slateTitle ibtitle"><p>'.$req_title.'</p></div>
+            <div class="slateBrief"><p>'.$req_brief.'</p></div>
+            <div class="slateBtn">
+            <ul>
+            <li><a target="_blank" href="post.php?req_id='.$req_id.'&post_id='.$post_id.'">View Post Details</a></li></ul>
+            </div>
+            </div>';
+        }
+        if ($regas == "Exporter")
+        {
+            echo '<div class="postSlate">
+            <ul class="slateDetails"><li><img class="exdetails" src="'.$profimages.'"></li><li>'.$cname.'</li></ul>
+            <div class="slateImg"><img src="'.$commodityimg.'"></div>
+            <div class="slateTitle extitle"><p>'.$req_title.'</p></div>
+            <div class="slateBrief"><p>'.$req_brief.'</p></div>
+            <div class="slateBtn">
+            <ul>
+            <li><a target="_blank" href="post.php?req_id='.$req_id.'&post_id='.$post_id.'">View Post Details</a></li></ul>
+            </div>
+            </div>';
+        }
+    }
+}
+}
+if ($badge == "Exporter")
+{
+    $exql =<<< EOF
+    SELECT * FROM toexapp ORDER BY req_id DESC;
+EOF;
+
+$exret = $db->query($exql);
+
+while ($exrow = $exret->fetchArray(SQLITE3_ASSOC))
+{
+    $req_id = $exrow['req_id'];
+    $req_title = $exrow['req_title'];
+    $min_order = $exrow['min_order'];
+    $poi = $exrow['poi'];
+    $pay_method = $exrow['pay_method'];
+    $req_brief = $exrow['req_brief'];
+    $post_id = $exrow['post_id'];
+    $towho = $exrow['towho'];
+    $commodityimg = $exrow['commodityimg'];
+
+    $uexql =<<<EOF
+    SELECT * FROM users WHERE userid = '$post_id';
+EOF;
+
+    $uexret = $db->query($uexql);
+
+    while ($uexrow = $uexret ->fetchArray(SQLITE3_ASSOC))
+    {
+        $cname = $uexrow['cname'];
+        $profimages = $uexrow['profimages'];
+        $regas = $uexrow['regas'];
+
+        if ($regas == "International Buyer")
+        {
+            echo '<div class="postSlate">
+            <ul class="slateDetails"><li><img class="ibdetails" src="'.$profimages.'"></li><li>'.$cname.'</li></ul>
+            <div class="slateImg"><img src="'.$commodityimg.'"></div>
+            <div class="slateTitle ibtitle"><p>'.$req_title.'</p></div>
+            <div class="slateBrief"><p>'.$req_brief.'</p></div>
+            <div class="slateBtn">
+            <ul>
+            <li><a target="_blank" href="post.php?req_id='.$req_id.'&post_id='.$post_id.'">View Post Details</a></li></ul>
+            </div>
+            </div>';
+        }
+        if ($regas == "Exporter")
+        {
+            echo '<div class="postSlate">
+            <ul class="slateDetails"><li><img class="exdetails" src="'.$profimages.'"></li><li>'.$cname.'</li></ul>
+            <div class="slateImg"><img src="'.$commodityimg.'"></div>
+            <div class="slateTitle extitle"><p>'.$req_title.'</p></div>
+            <div class="slateBrief"><p>'.$req_brief.'</p></div>
+            <div class="slateBtn">
+            <ul>
+            <li><a target="_blank" href="post.php?req_id='.$req_id.'&post_id='.$post_id.'">View Post Details</a></li></ul>
+            </div>
+            </div>';
         }
 
-            oCurImage.fadeOut().removeClass('current');
-            oNxtImage.fadeIn().addClass('current').animate({opacity: 1.0}, 1000);
     }
+}
+}
+}
+?>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.main_board i').click(function (e) {
+    e.stopPropagation();
+      $('.main_board').animate({width: '50px'}, 350);
+      $('.exFundingSide').animate({width: '10%'}, 350);
+      $('.allHs').animate({left: '130px'}, 350);
+      $('.exBanking').animate({width: '0%'}, 350).fadeOut();
+      $('.owl-dots').hide();
+      $('.exSupport').animate({marginTop: '50px'}, 350);
+      $('.userPostArea').animate({marginLeft: '120px'}, 350);
+      $('.main_board li').fadeOut();
+      $('.closing').hide();
+      $('.opening').fadeIn();
+  });
+  $('.opening').click(function() {
+      $('.main_board').animate({width: '230px'}, 350);
+      $('.exFundingSide').animate({width: '0%'}, 350);
+      $('.allHs').animate({left: '310px'}, 350);
+      $('.exBanking').animate({width: '100%'}, 350).fadeIn();
+      $('.owl-dots').show();
+      $('.userPostArea').animate({marginLeft: '300px'}, 350);
+      $('.opening').hide();
+      $('.closing').fadeIn();
+      $('.main_board li').fadeIn();
+  });
+  $('.owl-carousel').owlCarousel({
+    items:7,
+    loop:true,
+    margin:5,
+    merge:true,
+    responsive:{
+        678:{
+            mergeFit:true
+        },
+        1000:{
+            mergeFit:false
+        }
+    }
+});
+});
+$(function () {
+
+    setInterval ("slideImages()", 5000);
+
+});
+
+function slideImages () {
+    var oCurImage = $("#slide_2 div.current");
+    var oNxtImage = oCurImage.next();
+
+    if (oNxtImage.length == 0) {
+        oNxtImage = $("#slide_2 div:first-child");
+    }
+
+    oCurImage.fadeOut().removeClass('current');
+    oNxtImage.fadeIn().addClass('current').animate({opacity: 1.0}, 1000);
+}
+$(function () {
+
+    setInterval ("slideLogos()", 5000);
+
+});
+
+function slideLogos () {
+    var oCurImage = $("#slide_3 div.current");
+    var oNxtImage = oCurImage.next();
+
+    if (oNxtImage.length == 0) {
+        oNxtImage = $("#slide_3 div:first-child");
+    }
+
+    oCurImage.fadeOut().removeClass('current');
+    oNxtImage.fadeIn().addClass('current').animate({opacity: 1.0}, 1000);
+}
+</script>
+<script>
+$(window).on('load', function() {
+    $('div.container').masonry({
+        columnWidth: 'div.postSlate',
+        itemSelector: 'div.postSlate'
+    });
+});
 </script>
 </body>
 </html>

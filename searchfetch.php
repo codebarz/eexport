@@ -16,7 +16,7 @@ EOF;
 $result = $db->query($query);
 
 while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-  echo '<div class="quesbox">
+  echo '<div class="quesbox_2">
       <div class="questitle">
           <h2>'.$row["question"].'</h2>
       </div>
@@ -48,8 +48,12 @@ EOF;
         $sql = <<< EOF
 SELECT * FROM questions WHERE question LIKE '%$searchquery%' or answer LIKE '%$searchquery%';
 EOF;
+$bsql = <<< EOF
+SELECT * FROM banks WHERE bname LIKE '%$searchquery%' or bankbrief LIKE '%$searchquery%' LIMIT 1;
+EOF;
 
         $ret = $db->query($sql);
+        $bret = $db->query($bsql);
 
         if ($cret > 1)
         {
@@ -65,12 +69,34 @@ EOF;
             $answer = $row['answer'];
             $cid = $row['category_id'];
 
-            echo '<div class="quesbox">
+            echo '<div class="quesbox_2">
                 <div class="questitle">
                     <h2>'.$row["question"].'</h2>
                 </div>
                 <div class="quesanswer">'.$row["answer"].'</div>
                   <div class="quesdatetime"><img src="images/questime.png" alt="export question">'.$row["date"].'</div>
+            </div>';
+        }
+        while ($brow = $bret->fetchArray(SQLITE3_ASSOC)) {
+            $bname = $brow['bname'];
+            $bankbrief = $brow['bankbrief'];
+            $bankaddress = $brow['bankaddress'];
+            $banklogo = $brow['banklogo'];
+            $founded = $brow['founded'];
+            $owner = $brow['owner'];
+            $available = $brow['available'];
+
+            echo '<div class="modulecontent">
+                <div class="modulename">
+                    <div class="mname">'.$bname.'</div>
+                    <div class="mlogo"><img src="'.$banklogo.'"></div>
+                </div>
+                <div class="modulebrief">'.$bankbrief.'</div>
+                <div class="modulelinks">
+                    <div class="mfound">Founded: <span>'.$founded.'</span></div>
+                    <div class="mowned">Ownd By: <span>'.$owner.'</span></div>
+                    <div class="mavailable">Available for Export Loan: <span>'.$available.'</span></div>
+                </div>
             </div>';
         }
       }

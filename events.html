@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+if(typeof(EventSource) !== "undefined")
+{
+	var source = new EventSource("ssetest.php");
+	source.onmessage = function(e) {
+		alert("hi");
+		document.getElementById('list').innerHTML = event.data;
+	};
+}
+else {
+	document.getElementById("list").innerHTML = "No SSE support";
+}
+	</script>
+</head>
+<body>
+	<div style="background: blue" id="list"></div>
+</body>
+</html>

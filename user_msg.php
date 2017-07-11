@@ -61,13 +61,13 @@ EOF;
                 $select_uname = $serow['fname'];
                 $select_uimg = $serow['profimages'];
 
-                echo "<a href='user_msg.php?hash=$hash'><div class='text'><img src='$select_uimg'><p>$select_uname</p></div></a>";
+                echo "<a href='user_msg.php?hash=$hash'><div class='text'><img src='$select_uimg'><p><i classs='fa fa-user'></i>$select_uname</p></div></a>";
             }
             while ($berow = $beret->fetchArray(SQLITE3_ASSOC)) {
                 $select_uname = $berow['bname'];
                 $select_uimg = $berow['banklogo'];
 
-                echo "<a href='user_msg.php?hash=$hash'><div class='text'><img src='$select_uimg'><p>$select_uname</p></div></a>";
+                echo "<a href='user_msg.php?hash=$hash'><div class='text'><img src='$select_uimg'><p><i classs='fa fa-user'></i>$select_uname</p></div></a>";
             }
     }
     ?>

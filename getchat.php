@@ -1,9 +1,7 @@
 <?php
-require_once ("db.php");
-
-$db = new MyDB();
-
 session_start();
+require_once ("db.php");
+$db = new MyDB();
 ?>
     <!DOCTYPE html>
     <html>
@@ -25,12 +23,12 @@ session_start();
     </head>
     <body style="background-color: #eee">
 <?php
-    $us_id = $_SESSION['log_id'];
+    // $us_id = $_SESSION['log_id'];
 
 //echo empty($_SESSION['hash']) ? 'not set' : $_SESSION['hash'];
 
+$hasher = $_SESSION['group_hash'];
 
-$hasher = $_SESSION['hash'];
 
     $mesql =<<<EOF
 SELECT from_id, to_id, message FROM chatportal WHERE group_hash = '$hasher';
@@ -45,6 +43,7 @@ EOF;
     while ($merow = $meret->fetchArray(SQLITE3_ASSOC))
     {
         $from_id = $merow['from_id'];
+        $to_id = $merow['to_id'];
         $messages = $merow['message'];
 
 
@@ -57,16 +56,31 @@ EOF;
             $from_fname = $urow['bname'];
             $from_img = $urow['banklogo'];
 
+            // if ($from_id == $_SESSION['bname'])
+            // {
+            //     $from_id = $to_id;
+            // }
+            // else {
+            //     $from_id = $_SESSION['bname'];
+            // }
+
 
             if ($from_id != $_SESSION['bname']) {
 
-                echo "
-<div class='from_bubble'><div class='from_img'><img src='$from_img'></div><p>$messages</p></div><br>";
-            }
-            if ($from_id = $_SESSION['log_id']) {
-                echo "
-<div class='rep_bubble'><div class='rep_img'><img src='$from_img'></div><p>$messages</p></div><br>";
-            }
+              echo '
+              <div class="recMsgBubble">
+                  <div class="recBubbleImg"><img src="'.$from_img.'"></div>
+                  <div class="recBubbleMsg">'.$messages.'</div>
+              </div>';
+              //<div class='from_bubble'><div class='from_img'><img src='$from_img'></div><p>$messages</p></div><br>
+          } else {
+              echo '
+              <div class="userMsgBubble">
+                  <div class="userBubbleImg"><img src="'.$from_img.'"></div>
+                  <div class="userBubbleMsg">'.$messages.'</div>
+              </div>';
+              //<div class='rep_bubble'><div class='rep_img'><img src='$from_img'></div><p>$messages</p></div><br>
+          }
         }
         $csql =<<<EOF
          SELECT * FROM users WHERE userid = '$from_id';
@@ -74,18 +88,27 @@ EOF;
              $cret = $db->query($csql);
 
              while ($crow = $cret->fetchArray(SQLITE3_ASSOC)) {
-                 $from_fname = $crow['fname'];
+                $userid = $crow['userid'];
+                 $from_fname = $crow['cname'];
                  $from_img = $crow['profimages'];
 
 
-                 if ($from_id = $_SESSION['log_id']) {
+                 if ($from_id = $userid) {
 
-                     echo "
-         <div class='from_bubble'><div class='from_img'><img src='$from_img'></div><p>$messages</p></div><br>";
-                 } else {
-                     echo "
-         <div class='rep_bubble'><div class='rep_img'><img src='$from_img'></div><p>$messages</p></div><br>";
-                 }
+                   echo '
+                   <div class="recMsgBubble">
+                       <div class="recBubbleImg"><img src="'.$from_img.'"></div>
+                       <div class="recBubbleMsg">'.$messages.'</div>
+                   </div>';
+                   //<div class='from_bubble'><div class='from_img'><img src='$from_img'></div><p>$messages</p></div><br>
+               } else {
+                   echo '
+                   <div class="userMsgBubble">
+                       <div class="userBubbleImg"><img src="'.$from_img.'"></div>
+                       <div class="userBubbleMsg">'.$messages.'</div>
+                   </div>';
+                   //<div class='rep_bubble'><div class='rep_img'><img src='$from_img'></div><p>$messages</p></div><br>
+               }
              }
 }
 // while ($cerow = $ceret->fetchArray(SQLITE3_ASSOC))

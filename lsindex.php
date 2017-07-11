@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 }
 ?>
 
-<!DCOTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>E-Xport | Learn Export</title>

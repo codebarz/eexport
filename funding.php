@@ -1,8 +1,8 @@
 <?php
+session_start();
+error_reporting(0);
 require_once ("db.php");
 $db = new MyDb();
-
-session_start();
 // if (!isset($_SESSION['log_name']))
 // {
 //     echo "<script>alert('Please ensure you login or signup')</script>";
@@ -70,17 +70,17 @@ session_start();
           </form>
       </div>
   </div>
-  <div class="home_head">
+  <div class="home_head_2">
     <div class="logo_x">
         <img src="images/logo.png">
     </div>
     <div class="navi">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="index.php">HOME</a></li>
+            <li><a href="about.php">ABOUT</a></li>
+            <li><a href="blog.php">BLOG</a></li>
+            <li><a href="gallery.php">GALLERY</a></li>
+            <li><a href="contact.php">CONTACT</a></li>
         </ul>
     </div>
       <?php
@@ -90,17 +90,62 @@ session_start();
       }
       else
       {
+          $id = $_SESSION['log_id'];
           echo "<form action=\"logout.php\" method=\"post\" enctype=\"multipart/form-data\">
               <input type=\"submit\" name=\"logout\" id=\"logout\" value=\"Logout\">
-          </form><a href='exporter.php'>My Account</a>";
+          </form><a class='myAcc' href='exporter.php?log_id=$id'>My Account</a>";
       }
       ?>
-  </div><br><br>
-  <div class="fund_img">
-    <div class="dim"></div>
-      <img src="images/funding.jpg">
   </div>
-  <div class="funding_area">
+  <div class="fund_img">
+    <div class="fundtxt">
+      <h1>Looking for funds/finance to kick start or expand your export?</h1>
+      <p>
+        Get several funding options for your export transactions from the various
+        banks in Nigeria listed on our platform and have an opportunity of a live
+        chat with your bank officials that will guide you on how to access funds for your export projects.<br><br>
+Different banks have different funding requirements.<br><br>
+*Please read all requirements carefully
+      </p>
+    </div>
+    <div class="banks_list">
+        <div class="bn_search">
+            <form action="bank_search.php" method="post" enctype="multipart/form-data">
+                <input type="search" onkeydown="searchq();" name="search_bn" id="search_bn" placeholder="Enter Bank Name">
+            </div>
+        <div class="list_ret">
+        <?php
+            $bsql = $db->query("SELECT * FROM banks");
+
+            while ($brow = $bsql->fetchArray(SQLITE3_ASSOC))
+            {
+                $id = $brow['id'];
+                $banklogo = $brow['banklogo'];
+                $bankbrief = $brow['bankbrief'];
+                $bankname = $brow['bname'];
+
+                if ($bankbrief == "Nil" || $bankbrief == "nil") {
+                    echo "<a href='bankprofile.php?bname=$bankname'><div class='grid'>
+                      <div class='bn_grid_logo'>
+                        <img src='$banklogo'>
+                    </div></div></a>";
+                }
+                else
+                {
+                echo "<a href='bankprofile.php?bname=$bankname'><div class='grid'>
+                    <div class='bn_grid_logo'>
+                      <img src='$banklogo'>
+                  </div>
+                </div></a>";
+              }
+            }
+        ?>
+      </div>
+    </div>
+    <div class="dim"></div>
+      <!-- <img src="images/money.png"> -->
+  </div>
+  <!-- <div class="funding_area">
     <div class="funding_area_con">
     <div class="fun_img">
         <img src="images/funds.png">
@@ -115,190 +160,8 @@ session_start();
       <h2>Bringing You Closer</h2>
       <p>Chat directly with each bank's officials if you have further questions</p>
   </div>
-</div>
+</div> -->
   <!-- <div class="funding_side"></div> -->
-  <div class="banks_list">
-      <!-- <div id="grid_container">
-          <div style="height: 80px"><div><div class="dim"></div><img src="images/zenithlogo.png"></div></div>
-          <div style="height: 160px"><div>2</div></div>
-          <div style="height: 100px"><div>3</div></div>
-          <div style="height: 190px"><div>4</div></div>
-          <div style="height: 200px"><div>5</div></div>
-          <div style="height: 240px"><div>6</div></div>
-          <div style="height: 240px"><div>7</div></div>
-          <div style="height: 140px"><div>8</div></div>
-          <div style="height: 340px"><div>9</div></div>
-          <div style="height: 160px"><div>10</div></div>
-          <div style="height: 170px"><div>11</div></div>
-          <div style="height: 150px"><div>12</div></div>
-          <div style="height: 190px"><div>13</div></div>
-          <div style="height: 170px"><div>14</div></div>
-          <div style="height: 180px"><div>15</div></div>
-          <div style="height: 130px"><div>16</div></div>
-          <div style="height: 170px"><div>17</div></div>
-          <div style="height: 210px"><div>18</div></div>
-          <div style="height: 120px"><div>19</div></div>
-          <div style="height: 160px"><div>20</div></div>
-          <div style="height: 180px"><div>21</div></div>
-          <div style="height: 130px"><div>22</div></div>
-          <div style="height: 240px"><div>23</div></div>
-      </div> -->
-      <div class="bn_search">
-          <form action="bank_search.php" method="post" enctype="multipart/form-data">
-              <input type="search" onkeydown="searchq();" name="search_bn" id="search_bn" placeholder="Enter Bank Name">
-          </div>
-      </div>
-      <div class="list_ret">
-      <?php
-          $bsql = $db->query("SELECT * FROM banks");
-
-          while ($brow = $bsql->fetchArray(SQLITE3_ASSOC))
-          {
-              $id = $brow['id'];
-              $banklogo = $brow['banklogo'];
-              $bankbrief = $brow['bankbrief'];
-              $bankname = $brow['bname'];
-
-              if ($bankbrief == "Nil" || $bankbrief == "nil") {
-                  echo "<a href='bankprofile.php?bname=$bankname'><div class='grid'>
-                    <div class='bn_grid_logo'>
-                      <img src='$banklogo'>
-                  </div></div></a>";
-              }
-              else
-              {
-              echo "<a href='bankprofile.php?bname=$bankname'><div class='grid'>
-                  <div class='bn_grid_logo'>
-                    <img src='$banklogo'>
-                </div>
-              </div></a>";
-            }
-          }
-      ?>
-    </div>
-      <!-- <div class="grid">
-          <div class="bn_grid_logo">
-            <img src="images/heritage.png">
-            <div class="dim"></div>
-            <div class="bn_text">Heritage Bank is an International Bank Located across the Globe. Residing in over 500 countries across the
-              globe. Present in over 5 continents of the world.. <br><br>
-              <div class="bn_active">• Active</div>
-            </div>
-          </div>
-          <div class="bn_grid_name">Heritage Bank</div>
-          <div class="grid_icon_con">
-          <div class="bn_grid_icon">
-              <div class="grid_icon"><img src="images/more.png"></div>
-              <div class="grid_icon"><img src="images/sendmsg.png"></div>
-              <div class="grid_icon"><img src="images/call.png"></div>
-          </div>
-        </div>
-      </div>
-      <div class="grid">
-          <div class="bn_grid_logo">
-            <img src="images/diamond.png">
-            <div class="dim"></div>
-            <div class="bn_text">Diamond Bank is an International Bank Located across the Globe. Residing in over 500 countries across the globe...<br><br>
-            <div class="bn_active">• Active</div>
-            </div>
-          </div>
-          <div class="bn_grid_name">Diamond Bank</div>
-          <div class="grid_icon_con">
-          <div class="bn_grid_icon">
-              <div class="grid_icon"><img src="images/more.png"></div>
-              <div class="grid_icon"><img src="images/sendmsg.png"></div>
-              <div class="grid_icon"><img src="images/call.png"></div>
-          </div>
-        </div>
-      </div>
-      <div class="grid">
-        <div class="bn_grid_logo">
-          <img src="images/fidelity.png">
-          <div class="dim"></div>
-          <div class="bn_text">Fidelity Bank is an International Bank Located across the Globe. Residing in over 500 countries across the globe...<br><br>
-          <div class="bn_active">• Active</div>
-          </div>
-        </div>
-        <div class="bn_grid_name">Fidelity Bank</div>
-        <div class="grid_icon_con">
-        <div class="bn_grid_icon">
-            <div class="grid_icon"><img src="images/more.png"></div>
-            <div class="grid_icon"><img src="images/sendmsg.png"></div>
-            <div class="grid_icon"><img src="images/call.png"></div>
-        </div>
-      </div>
-      </div>
-      <div class="grid">
-        <div class="bn_grid_logo">
-          <img src="images/firstbank.png">
-          <div class="dim"></div>
-          <div class="bn_text">First Bank Nigeria Plc. is an International Bank based in Nigeria with branches
-            Located across the Globe. Residing in over 500 countries across the globe...<br><br>
-            <div class="bn_active">• Active</div>
-          </div>
-        </div>
-        <div class="bn_grid_name">First Bank</div>
-        <div class="grid_icon_con">
-        <div class="bn_grid_icon">
-            <div class="grid_icon"><img src="images/more.png"></div>
-            <div class="grid_icon"><img src="images/sendmsg.png"></div>
-            <div class="grid_icon"><img src="images/call.png"></div>
-        </div>
-      </div>
-      </div>
-      <div class="grid">
-        <div class="bn_grid_logo">
-          <img src="images/fcmb.png">
-          <div class="dim"></div>
-          <div class="bn_text">First City Monument Bank is an International Bank Located across the Globe.
-            Residing in over 500 countries across the globe...<br><br>
-            <div class="bn_active">• Active</div>
-          </div>
-        </div>
-        <div class="bn_grid_name">First City Monument Bank</div>
-        <div class="grid_icon_con">
-        <div class="bn_grid_icon">
-            <div class="grid_icon"><img src="images/more.png"></div>
-            <div class="grid_icon"><img src="images/sendmsg.png"></div>
-            <div class="grid_icon"><img src="images/call.png"></div>
-        </div>
-      </div>
-      </div>
-      <div class="grid grayscale">
-        <div class="bn_grid_logo">
-          <img src="images/wema.png">
-          <div class="dim"></div>
-          <div class="bn_text">Wema Bank is an International Bank with many branches across the Globe.
-            We offer loans with low interest rates. Residing in over 500 countries across the globe...<br>
-          </div>
-        </div>
-        <div class="bn_grid_name">Wema Bank</div>
-        <div class="grid_icon_con">
-        <div class="bn_grid_icon">
-            <div class="grid_icon"><img src="images/more.png"></div>
-            <div class="grid_icon"><img src="images/sendmsg.png"></div>
-            <div class="grid_icon"><img src="images/call.png"></div>
-        </div>
-      </div>
-      </div>
-      <div class="grid">
-        <div class="bn_grid_logo">
-          <img src="images/stanbic.png">
-          <div class="dim"></div>
-          <div class="bn_text">Stanbic IBTC Bank is an International Bank with many branches across the Globe.
-            We offer loans with low interest rates. Residing in over 500 countries across the globe...<br>
-          </div>
-        </div>
-        <div class="bn_grid_name">Stanbic IBTC Bank</div>
-        <div class="grid_icon_con">
-        <div class="bn_grid_icon">
-            <div class="grid_icon"><img src="images/more.png"></div>
-            <div class="grid_icon"><img src="images/sendmsg.png"></div>
-            <div class="grid_icon"><img src="images/call.png"></div>
-        </div>
-      </div> -->
-      </div>
-  </div>
 <script>
 function renderGrid() {
     var blocks = document.getElementById('grid_container').children;

@@ -1,21 +1,26 @@
 <?php
+error_reporting(0);
 require_once ("db.php");
 $db = new MyDb();
 
 session_start();
+
+
 if (!isset($_SESSION['log_name']))
 {
+    $_SESSION['log_id'] = $id;
     echo "<script>alert('Please ensure you login or signup')</script>";
 }
 else
 {
+
 
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>E-Xport | Welcome</title>
+    <title>Nigeriaeexport | Welcome</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
@@ -67,27 +72,29 @@ else
 </div>
 <div class="home_head">
   <div class="logo_x">
-      <img src="images/logo.png">
+      <img src="images/logos.png">
   </div>
   <div class="navi">
       <ul>
-          <li><a href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="blog.php">Blog</a></li>
-          <li><a href="gallery.php">Gallery</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="index.php">HOME</a></li>
+          <li><a href="about.php">ABOUT</a></li>
+          <li><a href="blog.php">BLOG</a></li>
+          <li><a href="gallery.php">GALLERY</a></li>
+          <li><a href="contact.php">CONTACT</a></li>
       </ul>
   </div>
     <?php
-    if (!isset($_SESSION['log_name']))
+    if (!isset($_SESSION['log_name']) && !isset($_SESSION['log_id']))
     {
       echo "<div class=\"loginBtn\" onclick=\"formOpen()\">Login</div><div class=\"signupBtn\">Create an account</div>";
     }
     else
     {
+
+        $id = $_SESSION['log_id'];
         echo "<form action=\"logout.php\" method=\"post\" enctype=\"multipart/form-data\">
             <input type=\"submit\" name=\"logout\" id=\"logout\" value=\"Logout\">
-        </form><a href='exporter.php'>My Account</a>";
+        </form><a class='myAcc' href='exporter.php?log_id=$id'>My Account</a>";
     }
     ?>
 </div>
@@ -162,13 +169,13 @@ else
         <div class="we_do_area">
             <div class="we_do_con"><br>
               <h1>What we do</h1><br>
-                <a href="connection.php"><div class="con_rows connect">
+                <a href="connected.php"><div class="con_rows connect">
                     <div class="con_rows_img">
                         <img src="images/networking.jpeg">
                     </div>
                     <h4>Connect</h4>
                     <div class="con_rows_img_3">
-                        <img src="images/conn.png">
+                        <p>Our B2B platform connects you to international buyers, Exporters, LBAs who are eager to do business with you.</p>
                     </div>
                 </div></a>
                 <a href="searchengine.php"><div class="con_rows">
@@ -177,7 +184,9 @@ else
                     </div>
                     <h4>Search Engine</h4>
                     <div class="con_rows_img_3">
-                        <!-- <svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg> -->
+                        <p>
+                          Our Search Engine will navigate you through all your questions and export processes.
+                        </p>
                     </div>
                 </div></a>
                 <a href="funding.php" class="funding"><div class="con_rows funding">
@@ -186,7 +195,9 @@ else
                     </div>
                     <h4>Export Funding/Finance</h4>
                     <div class="con_rows_img">
-
+                    <p>
+                      Avail yourself of the various export funding from banks in Nigeria while also interacting online with your bank officials.
+                    </p>
                     </div>
                 </div></a>
                 <!-- <div class="con_rows"></div> -->
@@ -222,7 +233,7 @@ else
             <br><br>
         </div>
     </div>
-    <!-- <div class="ad_left_2"><img src="images/mtn.jpg"></div> -->
+    <div class="ad_left_2"><img src="images/mtn.jpg"></div>
     <div class="ad_right_2"><img src="images/uni.jpg"></div>
     <div class="we_do">
         <div class="we_do_area">
@@ -232,7 +243,7 @@ else
               </div>
               <h4>Background Checks</h4>
               <div class="con_rows_img">
-
+                  <p>If you are in Doubt. Click here.</p>
               </div>
           </div></a>
           <div class="con_rows">
@@ -241,7 +252,9 @@ else
               </div>
               <h4>Commodity/Quality Control</h4>
               <div class="con_rows_img">
-
+              <p>
+                Not sure if your goods is up to standard/ We've got you covered! Click here to ensure zero rejects for your commodities.
+              </p>
               </div>
           </div>
           <div class="con_rows">
@@ -250,7 +263,9 @@ else
               </div>
               <h4>Interactive Session</h4>
               <div class="con_rows_img">
-
+              <p>
+                Meet with our export experts and professionals who will assit and guide you through your export journey.
+              </p>
               </div>
           </div>
         </div>
@@ -259,12 +274,12 @@ else
         <div class="pac_con">
             <img src="images/play.png">
             <div class="pac_tit">
-                <h3>Trainings</h3>
+                <h3>Videos</h3>
             </div>
             <div class="pac_brief">
               <p>
-                  Our industry leading expert educators ensure your live interactive
-                   lessons have the latest, most relevant, engaging content to keep you ahead of the game.
+                  Gain access to our video tutorial on correct export processes and tutorials
+                  to meet international standards
               </p>
             </div>
         </div>
@@ -275,8 +290,8 @@ else
             </div>
             <div class="pac_brief">
               <p>
-                  Our industry leading expert educators ensure your live interactive
-                   lessons have the latest, most relevant, engaging content to keep you ahead of the game.
+                  Experience live chat sessions with our expert professionals & 
+                  practisioners in the industry and other users on the platform.
               </p>
             </div>
         </div>
@@ -287,8 +302,9 @@ else
             </div>
             <div class="pac_brief">
               <p>
-                  Our industry leading expert educators ensure your live interactive
-                   lessons have the latest, most relevant, engaging content to keep you ahead of the game.
+                  Our team of professionals are always available to attend to your 
+                  questions and provide support on any issue you might experience 
+                  when using the platform.
               </p>
             </div>
         </div>
@@ -393,7 +409,7 @@ else
                         </p>
                         <p class="briefing">Want help with a Buyer, Seller, or Freight Forwarder etc
                         </p>
-                        <a href="#"><div class="dark_a">Learn more</div></a><br>
+                        <a href="silentuser.php"><div class="dark_a">Learn more</div></a><br>
                     </div>
                 </div>
             </div>
@@ -494,7 +510,7 @@ EOF;
         <div class="pack_btn">View Subscription Packages</div>
     </div>
     <div class="dim"></div>
-    <div id='slide_2'>
+    <div id='slide_7'>
         <div class="current"><img src="images/connection.jpg"></div>
         <div><img src="images/search.jpg"></div>
         <div><img src="images/funding.jpg"></div>
@@ -508,7 +524,7 @@ EOF;
       <div class="logo_x">
           <img src="images/logo.png">
       </div><br>
-        <h6>NigeriaEexport is a one stop shop for everything export in Nigeria. We provide you with all the necessary
+        <h6>NigeriaEexport is a one stop platform for everything export in Nigeria. We provide you with all the necessary
           information that you need to be a successful Exporter in Nigeria and in Africa.
 </h6>
 <div class="f_smi">
@@ -520,6 +536,13 @@ EOF;
 </div>
 <h6>&copy; Nigeriaeexport 2017</h6>
     </div>
+    <div class="support_by">
+<ul>
+  <li><img src="images/nepza.png"></li>
+  <li><img src="images/nepc.png"></li>
+  <li><img src="images/nex.png"></li>
+</ul>
+</div>
   </div>
 </div>
 <script type="text/javascript">
@@ -527,11 +550,11 @@ $(document).scroll(function() {
   var x = $(this).scrollTop();
   if (x > 200)
   {
-      $('.home_head').css("background", "#fff");
+      $('.home_head').css("position", "fixed");
   }
   else
   {
-      $('.home_head').css("background", "transparent", "transition", ".5s");
+      $('.home_head').css("position", "relative", "transition", ".5s");
   }
 });
     $(document).ready(function () {
@@ -581,6 +604,23 @@ $(document).scroll(function() {
 
         if (oNxtImage.length == 0) {
             oNxtImage = $("#slide_2 div:first-child");
+        }
+
+        oCurImage.fadeOut().removeClass('current');
+        oNxtImage.fadeIn().addClass('current').animate({opacity: 1.0}, 1000);
+    }
+    $(function () {
+
+        setInterval ("slideFotImages()", 5000);
+
+    });
+
+    function slideFotImages () {
+        var oCurImage = $("#slide_7 div.current");
+        var oNxtImage = oCurImage.next();
+
+        if (oNxtImage.length == 0) {
+            oNxtImage = $("#slide_7 div:first-child");
         }
 
         oCurImage.fadeOut().removeClass('current');

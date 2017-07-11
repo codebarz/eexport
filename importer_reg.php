@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ("db.php");
 
 $db = new MyDB();
@@ -78,9 +79,10 @@ $db = new MyDB();
     }
     else
     {
+        $id = $_SESSION['log_id'];
         echo "<form action=\"logout.php\" method=\"post\" enctype=\"multipart/form-data\">
             <input type=\"submit\" name=\"logout\" id=\"logout\" value=\"Logout\">
-        </form><a href='exporter.php'>My Account</a>";
+        </form><a class='myAcc' href='exporter.php?log_id=$id'>My Account</a>";
     }
     ?>
 </div>
@@ -107,9 +109,10 @@ $db = new MyDB();
       <p style="font-size: 26px;"><strong>We get you connected to...</strong></p>
         <li><span>Exporters</span></li>
         <li><span>Freight Forwarders</span></li>
-        <li><span>International Buyers</span></li>
+        <li><span>Local Buying Agents</span></li>
         <p style="font-size: 26px;"><strong>While also providing access to...</strong></p>
         <li><span>Export Search Engine</span></li>
+        <li><span>HS Codes</span></li>
         <li><span>Shipping Companies Schedules</sapn></li>
         <li><span>Background Checks</span></li>
         <li><span>Commodity Prices</span></li>
@@ -274,6 +277,7 @@ $db = new MyDB();
         </div> -->
         <div class="price_card gold">
               <div class="price_header">
+                  <span class="priceicon"><img src="images/free.png"></span>
                   <span class="price">Free</span>
                   <span class="name">30 Day Free Trial</span>
               </div>
@@ -287,10 +291,11 @@ $db = new MyDB();
                   <li>&cross; 24/7 Live Support</li>
                   <li>&cross; All Other Free Services</li>
               </ul>
-              <button>Choose Plan</button>
+              <a href="registrationform.php"><button>Choose Plan</button></a>
         </div>
         <div class="price_card gold">
               <div class="price_header">
+                  <span class="priceicon"><img src="images/silv.png"></span>
                   <span class="price">&dollar; 50</span>
                   <span class="name">SILVER</span>
               </div>
@@ -304,10 +309,11 @@ $db = new MyDB();
                   <li>&#10003; All Other Free Services</li>
                   <li>&cross; Live Chat With our Export Experts</li>
               </ul>
-              <button>Choose Plan</button>
+              <button><form method="POST" action="https://voguepay.com/pay/"><input type="hidden" name="v_merchant_id" value="5556-0047094" /><input type="hidden" name="memo" value="Order from Tega Oke" /><input type="hidden" name="cur" value="USD" /><input type="hidden" name="item_1" value="Nigeriaeexport Silver Plan" /><input type="hidden" name="price_1" value="100" /><input type="hidden" name="description_1" value="Subscription for Nigeriaeexport Gold Plan" /><br /><input type="image" src="https://voguepay.com/images/buttons/subscribe_green.png" alt="PAY" /></form></button>
         </div>
         <div class="price_card gold">
               <div class="price_header">
+                  <span class="priceicon"><img src="images/gol.png"></span>
                   <span class="price">&dollar; 100</span>
                   <span class="name">GOLD</span>
               </div>

@@ -22,6 +22,9 @@ if (isset($_POST['sub_b_reg'])) {
     $bansize = $_FILES['b_c_ban']['size'];
     $bankbrief = $_POST['bank_brief'];
     $bankreq = $_POST['bank_req'];
+    $bankfounded = $_POST['b_founded'];
+    $bankowner = $_POST['b_owner'];
+    $available = $_POST['b_available'];
 
     #Paths to store Bank logo and Banner
     $logopath = $bankdir . $logoname;
@@ -55,8 +58,8 @@ if (isset($_POST['sub_b_reg'])) {
     {
 
     #Insert Statement to insert into db
-    $sql = $db->prepare('INSERT INTO banks (bname, bankrcnum, bankemail, bankaddress, bankpword, bankcpword, banklogo, bankbanner, bankbrief, bankreq)
-    VALUES(:bankname, :bankrcnum, :bankemail, :bankaddress, :bankpword, :bankcpword, :banklogo, :bankbanner, :bankbrief, :bankreq)');
+    $sql = $db->prepare('INSERT INTO banks (bname, bankrcnum, bankemail, bankaddress, bankpword, bankcpword, banklogo, bankbanner, bankbrief, bankreq, founded, owner, available)
+    VALUES(:bankname, :bankrcnum, :bankemail, :bankaddress, :bankpword, :bankcpword, :banklogo, :bankbanner, :bankbrief, :bankreq, :founded, :owner, :available)');
 
     #Bind all VALUES
     $sql->bindValue(':bankname', $bankname, SQLITE3_TEXT);
@@ -69,6 +72,9 @@ if (isset($_POST['sub_b_reg'])) {
     $sql->bindValue(':bankbanner', $banpath, SQLITE3_TEXT);
     $sql->bindValue(':bankbrief', $bankbrief, SQLITE3_TEXT);
     $sql->bindValue(':bankreq', $bankreq, SQLITE3_TEXT);
+    $sql->bindValue(':founded', $bankfounded, SQLITE3_TEXT);
+    $sql->bindValue(':owner', $bankowner, SQLITE3_TEXT);
+    $sql->bindValue(':available', $available, SQLITE3_TEXT);
 
     $result = $sql->execute();
 

@@ -108,27 +108,121 @@ color: #fff; font-family: 'Open Sans', sans-serif; font-weight: bold; padding: 5
 				<li class="action-btn"><a href="addquestion.php">+ Question</a></li><br>
                 <li class="action-btn"><a href="addnews.php">+ News</a></li><br>
                 <li class="action-btn"><a href="add_loans.php">+ Loans</a></li><br>
-				<li class="action-btn"><a href="messages.php">Messages</a></li>
+                <li class="action-btn"><a href="videouploads.php">+ Videos</a></li><br>
+				<li class="action-btn"><a href="messages.php">Messages</a></li><br>
+        <li class="action-btn"><a href="payments.php">Payments</a></li>
 			</ul>
 		</nav>
 
 		<div class="content-wrapper">
 			<div class="page-title">
-                <h2>Recently Added</h2>
+                <h2>Recent Requests</h2>
             </div>
             <?php
             $sql = <<<EOF
-SELECT * FROM addcategory;
+SELECT * FROM toex ORDER BY req_id DESC;
 EOF;
 
             $ret = $db->query($sql);
 
-            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-                $catid = $row['catID'];
-            	$catname = $row['catname'];
-                $catimage = $row['catpic'];
+            while ($row = $ret->fetchArray(SQLITE3_ASSOC))
+            {
+                $req_title = $row['req_title'];
+                $min_order = $row['min_order'];
+                $poi = $row['poi'];
+                $pay_method = $row['pay_method'];
+                $req_brief = $row['req_brief'];
+                $post_id = $row['post_id'];
+                $towho = $row['towho'];
+                $commodityimg = $row['commodityimg'];
+
+
+                $usql =<<<EOF
+                SELECT * FROM users WHERE userid = '$post_id';
+EOF;
+
+                $uret = $db->query($usql);
+
+                while ($urow = $uret->fetchArray(SQLITE3_ASSOC)) {
+                      $badge = $urow['regas'];
+                      $cname = $urow['cname'];
+                      $profimages = $urow['profimages'];
+
+                      echo "<div class='user_post'>
+                      <div class='post_details'>
+              <div class=\"post_title\"><p>$req_title</p></div>
+              <div class=\"poster\"><img src='$profimages'></div>
+              <div class=\"poster_name\"><p>$cname</p></div>
+              <div class=\"post_req_details\"><p>$req_brief</p></div>
+              <div class=\"post_requirements\">
+                  <p>Min Order: <span>$min_order</span></p>
+                  <p>POI: <span>$poi</span></p>
+                  <p>Payment Method: <span>$pay_method</span></p>
+              </div></div>";
+                      echo "<div class=\"post_badge_contact\">";
+                      ?>
+                      <?php
+                      if ($badge == "Exporter")
+                      {
+                          echo "<div class='badge_2'><div class='dot'></div><p>$badge</p></div>";
+                      }
+                      if ($badge == "International Buyer")
+                      {
+                          echo "<div class='badge_2' style='background: #0a8226'><div class='dot'></div><p>$badge</p></div>";
+                      }
+                      if ($badge == "Local Buying Agent")
+                      {
+                          echo "<div class='badge_2' style='background: #eb3c00'><div class='dot'></div><p>$badge</p></div>";
+                      }
+                      if ($badge == "Freight")
+                      {
+                          echo "<div class='badge_2' style='background: #a8590d'><div class='dot'></div><p>$badge</p></div>";
+                      }
+
+                      $csql = <<<EOF
+                      SELECT COUNT(*) as count FROM toexapp WHERE req_brief = '$req_brief' AND post_id = '$post_id';
+EOF;
+
+$cret = $db->querySingle($csql);
+
+if ($cret == 1)
+{
+  echo '<div class="allowpost">
+    <form action="toexapp.php" method="post" enctype="multipart/form-data">
+    <input style="display: none" type="text" name="req_title" id="req_title" value="'.$req_title.'">
+    <input type="text" style="display: none" name="req_min" id="req_min" value="'.$min_order.'">
+    <div class="form_division" style="display: none">
+        <input type="text" name="req_entry" id="req_entry" value="'.$poi.'">
+        <input type="text" name="req_payment" id="req_payment" value="'.$pay_method.'">
+    </div>
+    <input type="text" style="display: none" name="postid" value="'.$post_id.'">
+    <input style="background: #f7f7f7; display: none; border: none" type="text" name="to_who" id="towho" readonly value="'.$towho.'">
+    <textarea name="post_req" id="post_req" style="display: none;" rows="6">'.$row["req_brief"].'</textarea><br>
+        <input type="submit" name="apppost" type="apppost" value="Approved">
+    </form>
+  </div>';
+}
+else {
+
+                      echo '<div class="allowpost">
+                        <form action="toexapp.php" method="post" enctype="multipart/form-data">
+                        <input style="display: none" type="text" name="req_title" id="req_title" value="'.$req_title.'">
+                        <input type="text" style="display: none" name="req_min" id="req_min" value="'.$min_order.'">
+                        <div class="form_division" style="display: none">
+                            <input type="text" name="req_entry" id="req_entry" value="'.$poi.'">
+                            <input type="text" name="req_payment" id="req_payment" value="'.$pay_method.'">
+                        </div>
+                        <input type="text" style="display: none" name="postid" value="'.$post_id.'">
+                        <input style="background: #f7f7f7; display: none; border: none" type="text" name="to_who" id="towho" readonly value="'.$towho.'">
+                        <textarea name="post_req" id="post_req" style="display: none;" rows="6">'.$row["req_brief"].'</textarea><br>
+                        <textarea name="commodityimg" style="display: none">'.$commodityimg.'</textarea>
+                            <input type="submit" name="apppost" type="apppost" value="Approve">
+                        </form>
+                      </div>';
+                    }
+                      echo "</div></div>";
+                }
             }
-            $db->close();
             ?>
 		</div> <!-- .content-wrapper -->
 	</main> <!-- .cd-main-content -->
